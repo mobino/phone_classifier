@@ -3,6 +3,8 @@ Phone Classifier
 
 Used to quickly classifiy a phone number into :landline, :mobile or :forbidden
 
+Current Travis Build Status: [![Build Status](https://secure.travis-ci.org/mobino/phone_classifier.png?branch=master)](https://travis-ci.org/mobino/phone_classifier)
+
 Installation
 ------------
 
@@ -63,12 +65,12 @@ Supported Countries
 Where is it used
 ----------------
 
-Used in Mobino[http://mobino.com], a mobile payment service, to classifiy client phone numbers
+Used in [Mobin](http://mobino.com), a mobile payment service, to classifiy client phone numbers
 
 Related
 -------
 
-PhoneClassifier uses the fantastic 'Phony'[http://github.com/floere/phony.git] library to normalize numbers. Phony is
+PhoneClassifier uses the fantastic [Phony](http://github.com/floere/phony.git) library to normalize numbers. Phony is
 the tool of choice if you need to work with phone numbers in Ruby.
 
 Contributing
