@@ -22,8 +22,6 @@ Supported Countries
 -------------------
 
 * +1, USA (will only reject service numbers, all other numbers considered mobile). Blame the US numbering systems
-* +6, Greece
-* +31, Netherlands
 * +30, Greece
 * +31, Netherlands
 * +32, Belgium
