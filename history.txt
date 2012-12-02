@@ -1,6 +1,11 @@
 History
 =======
 
+0.0.2
+-----
+* jcfischer: Added Malaysia and Singapore
+
+
 0.0.1
 -----
 

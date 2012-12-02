@@ -40,6 +40,8 @@ Supported Countries
 * +47, Norway
 * +48, Poland
 * +49, Germany
+* +60, Malaysia
+* +65, Singapore
 * +212, Morocco
 * +213, Algeria
 * +233, Ghana
@@ -65,7 +67,7 @@ Supported Countries
 Where is it used
 ----------------
 
-Used in [Mobin](http://mobino.com), a mobile payment service, to classifiy client phone numbers
+Used in [Mobino](http://mobino.com), a mobile payment service, to classifiy client phone numbers
 
 Related
 -------

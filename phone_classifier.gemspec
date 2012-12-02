@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'phone_classifier'
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.date        = '2012-11-09'
   s.summary     = "Classification of phone numbers"
   s.description = "Classifies some countries phone numbers into :mobile, :forbidden and :landline"

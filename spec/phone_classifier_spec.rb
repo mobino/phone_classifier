@@ -294,4 +294,34 @@ describe PhoneClassifier do
 
   end
 
+  context "Malaysian Numbers" do
+
+    it "should set Malaysian mobile numbers" do
+      phone_number = "60 11 1234 5678"
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
+
+    it "should set Malaysian service numbers " do
+      phone_number = "60 999 123 123"
+      PhoneClassifier.new(phone_number).kind.should == :forbidden
+    end
+
+
+  end
+
+  context "Singapore Numbers" do
+
+     it "should set mobile numbers" do
+       phone_number = "65 8123 1234"
+       PhoneClassifier.new(phone_number).kind.should == :mobile
+     end
+
+     it "should set service numbers " do
+       phone_number = "65 3123 1234"
+       PhoneClassifier.new(phone_number).kind.should == :forbidden
+     end
+
+
+   end
+
 end
