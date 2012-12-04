@@ -43,6 +43,7 @@ module Forbidden
         '386' => %w{ 80 89 90 }, # Slovenia
         '420' => %w{ 8.. 9.. }, # Czech republic
         '421' => %w{ }, # Slovakia
+        '852' => %w{ 7... 8...}, # Hong Kong
     }
   end
 end

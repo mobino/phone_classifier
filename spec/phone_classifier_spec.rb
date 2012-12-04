@@ -322,6 +322,21 @@ describe PhoneClassifier do
      end
 
 
+  end
+
+  context "Hong Kong Numbers" do
+
+     it "should set mobile numbers" do
+       phone_number = "852 6123 1234"
+       PhoneClassifier.new(phone_number).kind.should == :mobile
+     end
+
+     it "should set service numbers " do
+       phone_number = "852 8123 1234"
+       PhoneClassifier.new(phone_number).kind.should == :forbidden
+     end
+
+
    end
 
 end

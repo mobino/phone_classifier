@@ -60,6 +60,7 @@ Supported Countries
 * +386, Slovenia
 * +420, Czech Republic
 * +421, Slovakia
+* +852, Hong Kong
 
 
 Where is it used
