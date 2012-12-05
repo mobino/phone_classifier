@@ -23,6 +23,7 @@ module Forbidden
         '49' => %w{ 1. 164 168 169 180 181 19[0-4] 800 900 }, # Germany
         '60' => %w{ 100 101 102 103 104 108 112 991 994 995 999 }, # Malaysia
         '65' => %w{ 3... 800 1800 1900 }, # Singapore
+        '98' => %w{ 95. 96. 97. 98. 99.} , #Iran
         '212' => %w{ 8. }, # Morocco
         '213' => %w{ 8.. 9.. }, # Algeria
         '233' => %w{ 1 4 6 7 8 9 }, # Ghana
@@ -43,6 +44,7 @@ module Forbidden
         '386' => %w{ 80 89 90 }, # Slovenia
         '420' => %w{ 8.. 9.. }, # Czech republic
         '421' => %w{ }, # Slovakia
+        '509' => %w{ 8. 9. }, # Haiti
         '852' => %w{ 7... 8...}, # Hong Kong
     }
   end

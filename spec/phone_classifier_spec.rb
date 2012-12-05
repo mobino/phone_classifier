@@ -47,7 +47,7 @@ describe PhoneClassifier do
 
       it "should set BE land numbers" do
         phone_number = "326279584"
-            PhoneClassifier.new(phone_number).kind.should == :landline
+        PhoneClassifier.new(phone_number).kind.should == :landline
 
       end
 
@@ -62,7 +62,7 @@ describe PhoneClassifier do
       end
 
       it "should set CH land numbers" do
-        phone_number =  "41444010930"
+        phone_number = "41444010930"
         PhoneClassifier.new(phone_number).kind.should == :landline
       end
 
@@ -76,7 +76,7 @@ describe PhoneClassifier do
       end
 
       it "should set DE land numbers" do
-        phone_number =  "4977317983830"
+        phone_number = "4977317983830"
         PhoneClassifier.new(phone_number).kind.should == :landline
       end
 
@@ -114,7 +114,7 @@ describe PhoneClassifier do
     context "French Numbers" do
 
       it "should set FR forbidden numbers" do
-        phone_number =  "33810459827"
+        phone_number = "33810459827"
         PhoneClassifier.new(phone_number).kind.should == :forbidden
       end
 
@@ -180,7 +180,7 @@ describe PhoneClassifier do
       end
 
       it "should set PL forbidden numbers" do
-        phone_number =  "488001234567"
+        phone_number = "488001234567"
         PhoneClassifier.new(phone_number).kind.should == :forbidden
       end
 
@@ -199,7 +199,7 @@ describe PhoneClassifier do
       end
 
       it "should set ES forbidden numbers (900)" do
-        phone_number =  "34901 123 123"
+        phone_number = "34901 123 123"
         PhoneClassifier.new(phone_number).kind.should == :forbidden
       end
 
@@ -210,29 +210,6 @@ describe PhoneClassifier do
 
     end
 
-    context "UK Numbers" do
-
-      it "should set UK mobile numbers" do
-        phone_number = "447412121314"
-        PhoneClassifier.new(phone_number).kind.should == :mobile
-      end
-
-      it "should set UK mobile numbers" do
-        phone_number = "44778533097"
-        PhoneClassifier.new(phone_number).kind.should == :mobile
-      end
-
-      it "should set UK land numbers" do
-        phone_number = "442012121314"
-        PhoneClassifier.new(phone_number).kind.should == :landline
-      end
-
-      it "should set UK forbidden numbers" do
-        phone_number = "4480012121314"
-        PhoneClassifier.new(phone_number).kind.should == :forbidden
-      end
-
-    end
 
 
     context "Nigerian Numbers" do
@@ -294,6 +271,52 @@ describe PhoneClassifier do
 
   end
 
+
+  context "Haitian Numbers" do
+
+    it "should set mobile numbers" do
+      phone_number = "509 34 12 1234"
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
+
+    it "should set service numbers " do
+      phone_number = "509 81 12 1234"
+      PhoneClassifier.new(phone_number).kind.should == :forbidden
+    end
+  end
+
+  context "Hong Kong Numbers" do
+
+    it "should set mobile numbers" do
+      phone_number = "852 6123 1234"
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
+
+    it "should set service numbers " do
+      phone_number = "852 8123 1234"
+      PhoneClassifier.new(phone_number).kind.should == :forbidden
+    end
+  end
+
+
+  context "Iran Numbers" do
+
+    it "should set landline numbers" do
+      phone_number = "98 21 1123 1234"
+      PhoneClassifier.new(phone_number).kind.should == :landline
+    end
+
+    it "should set mobile numbers" do
+      phone_number = "98 919 123 1234"
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
+
+    it "should set service numbers " do
+      phone_number = "98 961 123 1234"
+      PhoneClassifier.new(phone_number).kind.should == :forbidden
+    end
+  end
+
   context "Malaysian Numbers" do
 
     it "should set Malaysian mobile numbers" do
@@ -311,32 +334,40 @@ describe PhoneClassifier do
 
   context "Singapore Numbers" do
 
-     it "should set mobile numbers" do
-       phone_number = "65 8123 1234"
-       PhoneClassifier.new(phone_number).kind.should == :mobile
-     end
+    it "should set mobile numbers" do
+      phone_number = "65 8123 1234"
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
 
-     it "should set service numbers " do
-       phone_number = "65 3123 1234"
-       PhoneClassifier.new(phone_number).kind.should == :forbidden
-     end
-
-
+    it "should set service numbers " do
+      phone_number = "65 3123 1234"
+      PhoneClassifier.new(phone_number).kind.should == :forbidden
+    end
   end
 
-  context "Hong Kong Numbers" do
 
-     it "should set mobile numbers" do
-       phone_number = "852 6123 1234"
-       PhoneClassifier.new(phone_number).kind.should == :mobile
-     end
+  context "UK Numbers" do
 
-     it "should set service numbers " do
-       phone_number = "852 8123 1234"
-       PhoneClassifier.new(phone_number).kind.should == :forbidden
-     end
+    it "should set UK mobile numbers" do
+      phone_number = "447412121314"
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
 
+    it "should set UK mobile numbers" do
+      phone_number = "44778533097"
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
 
-   end
+    it "should set UK land numbers" do
+      phone_number = "442012121314"
+      PhoneClassifier.new(phone_number).kind.should == :landline
+    end
+
+    it "should set UK forbidden numbers" do
+      phone_number = "4480012121314"
+      PhoneClassifier.new(phone_number).kind.should == :forbidden
+    end
+
+  end
 
 end

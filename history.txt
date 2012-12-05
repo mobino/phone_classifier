@@ -1,6 +1,10 @@
 History
 =======
 
+0.0.4
+-----
+* jcfischer: Added Haiti, Iran
+
 0.0.3
 -----
 * jcfischer: Added Hong Kong

@@ -40,6 +40,7 @@ Supported Countries
 * +49, Germany
 * +60, Malaysia
 * +65, Singapore
+* +98, Iran
 * +212, Morocco
 * +213, Algeria
 * +233, Ghana
@@ -60,6 +61,7 @@ Supported Countries
 * +386, Slovenia
 * +420, Czech Republic
 * +421, Slovakia
+* +509, Haiti
 * +852, Hong Kong
 
 
