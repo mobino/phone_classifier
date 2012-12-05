@@ -332,6 +332,19 @@ describe PhoneClassifier do
 
   end
 
+  context "Seychelle Numbers" do
+
+    it "should set mobile numbers" do
+      phone_number = "248 2 12 34 56"
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
+
+    it "should set service numbers " do
+      phone_number = "248 8 12 34 56"
+      PhoneClassifier.new(phone_number).kind.should == :forbidden
+    end
+  end
+
   context "Singapore Numbers" do
 
     it "should set mobile numbers" do
@@ -345,6 +358,27 @@ describe PhoneClassifier do
     end
   end
 
+  context "Sri Lanka Numbers" do
+
+    it "should set mobile numbers" do
+      phone_number = "94 071 123 12 12"
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
+
+  end
+
+    context "Tanzania Numbers" do
+
+    it "should set mobile numbers" do
+      phone_number = "255 61 123 1234"
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
+
+    it "should set service numbers " do
+      phone_number = "255 801 23 1234"
+          PhoneClassifier.new(phone_number).kind.should == :forbidden
+    end
+  end
 
   context "UK Numbers" do
 

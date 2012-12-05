@@ -40,12 +40,15 @@ Supported Countries
 * +49, Germany
 * +60, Malaysia
 * +65, Singapore
+* +94, Sri Lanka
 * +98, Iran
 * +212, Morocco
 * +213, Algeria
 * +233, Ghana
 * +234, Nigeria
+* +248, Seychelles
 * +249, Sudan
+* +255, Tanzania
 * +350, Gibraltar
 * +351, Portugal
 * +352, Luxembourg
