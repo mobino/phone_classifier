@@ -298,6 +298,18 @@ describe PhoneClassifier do
     end
   end
 
+  context 'Indian Numbers' do
+
+    it 'should set mobile numbers' do
+      phone_number = '91 99 111 22 111'
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
+
+    it 'should set service numbers ' do
+      phone_number = '91 96 111 22 111'
+      PhoneClassifier.new(phone_number).kind.should == :forbidden
+    end
+  end
 
   context "Iran Numbers" do
 

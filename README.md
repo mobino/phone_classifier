@@ -41,6 +41,7 @@ Supported Countries
 * +60, Malaysia
 * +65, Singapore
 * +94, Sri Lanka
+* +91, India
 * +98, Iran
 * +212, Morocco
 * +213, Algeria
