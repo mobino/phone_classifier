@@ -6,7 +6,7 @@
       @@mobile ||= {
           '1' => %w{ [2-9].. }, # USA
           '30' => %w{ 6.. }, # Greece
-          '31' => %w{6}, # Netherlands
+          '31' => %w{ 6 }, # Netherlands
           '32' => %w{4..}, # Belgium
           '33' => %w{6 7}, # France
           '34' => %w{6. 7.}, # Spain

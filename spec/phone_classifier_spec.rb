@@ -344,6 +344,21 @@ describe PhoneClassifier do
 
   end
 
+  context "Moroccon Numbers" do
+
+    it "should set Moroocan mobile numbers" do
+      phone_number = "212 6 52 22 11 44"
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
+
+    it "should set Malaysian service numbers " do
+      phone_number = "212 45 1234 123"
+      PhoneClassifier.new(phone_number).kind.should == :landline
+    end
+
+
+  end
+
   context "Seychelle Numbers" do
 
     it "should set mobile numbers" do
