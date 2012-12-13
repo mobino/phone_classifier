@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/mobino/phony.git
-  revision: cec161fe0834636da5fd762b9d03415c17150a48
+  revision: 307ce6ca01b266fd5f844bab81c82bf8ac9284f5
   specs:
-    phony (1.8.3)
+    phony (1.8.4)
 
 GEM
   remote: http://rubygems.org/

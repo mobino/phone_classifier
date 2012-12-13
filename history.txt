@@ -1,6 +1,10 @@
 History
 =======
 
+0.0.7
+-----
+* jcfischer: Changed detection for Morocco
+
 0.0.4
 -----
 * jcfischer: Added Haiti, Iran

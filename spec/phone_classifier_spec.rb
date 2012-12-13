@@ -336,11 +336,6 @@ describe PhoneClassifier do
       PhoneClassifier.new(phone_number).kind.should == :mobile
     end
 
-    it "should set Malaysian service numbers " do
-      phone_number = "60 999 123 123"
-      PhoneClassifier.new(phone_number).kind.should == :forbidden
-    end
-
 
   end
 
@@ -351,7 +346,7 @@ describe PhoneClassifier do
       PhoneClassifier.new(phone_number).kind.should == :mobile
     end
 
-    it "should set Malaysian service numbers " do
+    it "should set Morocoan landline numbers " do
       phone_number = "212 45 1234 123"
       PhoneClassifier.new(phone_number).kind.should == :landline
     end
