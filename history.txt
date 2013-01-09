@@ -1,6 +1,10 @@
 History
 =======
 
+0.0.8
+-----
+* jcfischer: fix endless loop when trying to handle short numbers
+
 0.0.7
 -----
 * jcfischer: Changed detection for Morocco
