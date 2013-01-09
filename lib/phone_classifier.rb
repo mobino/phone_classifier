@@ -36,16 +36,20 @@ class PhoneClassifier
 
   def is_number_of_type numbers
     parts = Phony.split Phony.normalize(@number)
-    forbidden_numbers = numbers[parts.shift]
+    ndcs = numbers[parts.shift]
     prefix = parts.shift
 
-    # This is a hotfix for strange behaviour.
-    # I don't know why but some numbers are split ["45", false, "40", "53", "25", "77"]
-    until prefix.is_a? String
+    return false unless ndcs # if we don't know the country, we can make no assumptions
+
+    # countries without NDCs (Denmark) have this parts structure ["45", false, "40", "53", "25", "77"]
+    until parts.size == 0 || prefix.is_a?(String)
       prefix = parts.shift
+
     end
 
-    forbidden_numbers.each { |n| return true if prefix.match(/^#{n}$/) } unless forbidden_numbers.nil?
+
+    ndcs.each { |n| return true if prefix.match(/^#{n}$/) } unless ndcs.nil?
+
     false
   end
 
