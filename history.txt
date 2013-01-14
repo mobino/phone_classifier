@@ -1,6 +1,10 @@
 History
 =======
 
+0.0.9
+-----
+* jcfischer: added Argentina, El Salvador
+
 0.0.8
 -----
 * jcfischer: fix endless loop when trying to handle short numbers

@@ -38,6 +38,7 @@ Supported Countries
 * +47, Norway
 * +48, Poland
 * +49, Germany
+* +54, Argentina
 * +60, Malaysia
 * +65, Singapore
 * +94, Sri Lanka
@@ -65,6 +66,7 @@ Supported Countries
 * +386, Slovenia
 * +420, Czech Republic
 * +421, Slovakia
+* +503, El Salvador
 * +509, Haiti
 * +852, Hong Kong
 
