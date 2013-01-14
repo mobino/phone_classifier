@@ -21,7 +21,7 @@
           '47' => %w{ 9.. 4.. 58. 59. }, # Norway
           '48' => %w{50. 51. 53. 60. 66. 69. 72. 78. 79. 88.}, # Poland
           '49' => %w{ 151 152 157 159 160 162 163 17[0-9] }, # Germany
-          '54' => %{ .. ... .... }, # Argentina (Everything can be mobile)
+          '54' => %w{ \d{2} \d{3} \d{4} }, # Argentina (Everything can be mobile)
           '60' => %w{ 10 11 12 13 14 153 154 156 158 16 17 18 19 }, # Malaysia
           '65' => %w{ 8... 9... }, # Singapore
           '91' => %w{ 91 92 93 94 97 98 99 }, # India

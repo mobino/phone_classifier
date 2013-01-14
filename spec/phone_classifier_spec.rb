@@ -44,6 +44,15 @@ describe PhoneClassifier do
   context "kinds of numbers" do
 
 
+    context "Argentinan Numbers" do
+
+      it "should set AG mobile numbers" do
+        phone_number = "54111234566"
+        PhoneClassifier.new(phone_number).kind.should == :mobile
+      end
+
+
+    end
     context "Belgium Numbers" do
 
       it "should set BE mobile numbers" do
