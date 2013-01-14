@@ -21,6 +21,7 @@ module Forbidden
         '47' => %w{ 8.. }, # Norway
         '48' => %w{70., 80.}, # Poland
         '49' => %w{ 1. 164 168 169 180 181 19[0-4] 800 900 }, # Germany
+        '54' => %w{ 6.. 8.. }, # Argentina
         '60' => %w{ 100 101 102 103 104 108 112 991 994 995 999 }, # Malaysia
         '65' => %w{ 3... 800 1800 1900 }, # Singapore
         '91' => %w{ 90 95 96 }, # India
@@ -48,6 +49,7 @@ module Forbidden
         '386' => %w{ 80 89 90 }, # Slovenia
         '420' => %w{ 8.. 9.. }, # Czech republic
         '421' => %w{ }, # Slovakia
+        '503' => %w{ }, # El Salvador
         '509' => %w{ 8. 9. }, # Haiti
         '852' => %w{ 7... 8...}, # Hong Kong
     }
