@@ -93,6 +93,17 @@ describe PhoneClassifier do
 
     end
 
+    context "Slovenian Numbers" do
+
+      it "should set SL mobile numbers" do
+        phone_number = "38651336595"
+        PhoneClassifier.new(phone_number).kind.should == :mobile
+
+      end
+
+
+    end
+
     context "German Numbers" do
 
       it "should set DE mobile numbers" do
@@ -234,7 +245,6 @@ describe PhoneClassifier do
       end
 
     end
-
 
 
     context "Nigerian Numbers" do
@@ -414,7 +424,7 @@ describe PhoneClassifier do
 
   end
 
-    context "Tanzania Numbers" do
+  context "Tanzania Numbers" do
 
     it "should set mobile numbers" do
       phone_number = "255 61 123 1234"
@@ -423,8 +433,13 @@ describe PhoneClassifier do
 
     it "should set service numbers " do
       phone_number = "255 801 23 1234"
-          PhoneClassifier.new(phone_number).kind.should == :forbidden
+      PhoneClassifier.new(phone_number).kind.should == :forbidden
     end
+  end
+
+  context 'Turkey numbers' do
+    phone_number = "90 532 412 5111"
+    PhoneClassifier.new(phone_number).kind.should == :mobile
   end
 
   context "UK Numbers" do
