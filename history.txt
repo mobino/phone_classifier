@@ -1,6 +1,10 @@
 History
 =======
 
+0.0.10
+------
+* jcfischer: added Turkey, Australia
+
 0.0.9
 -----
 * jcfischer: added Argentina, El Salvador

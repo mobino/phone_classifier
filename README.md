@@ -40,7 +40,9 @@ Supported Countries
 * +49, Germany
 * +54, Argentina
 * +60, Malaysia
+* +61, Australia
 * +65, Singapore
+* +90, Turkey
 * +94, Sri Lanka
 * +91, India
 * +98, Iran
