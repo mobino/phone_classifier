@@ -63,6 +63,21 @@ describe PhoneClassifier do
 
 
     end
+
+
+    context "Australian Numbers" do
+
+      it "should set AU mobile numbers" do
+        phone_number = "61412123123"
+        PhoneClassifier.new(phone_number).kind.should == :mobile
+      end
+
+      it "should set AU forbideen numbers" do
+        phone_number = "61190123123"
+        PhoneClassifier.new(phone_number).kind.should == :forbidden
+      end
+
+    end
     context "Belgium Numbers" do
 
       it "should set BE mobile numbers" do
