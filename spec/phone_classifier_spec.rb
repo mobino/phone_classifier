@@ -5,11 +5,7 @@ require 'spec_helper'
 
 describe PhoneClassifier do
 
-  context 'it handles invalid number' do
-    it 'does not timeout' do
-      PhoneClassifier.new('52726').kind.should == :landline
-    end
-  end
+
 
   context "it classifies a phone number" do
 
@@ -210,6 +206,12 @@ describe PhoneClassifier do
 
     end
 
+    context 'Mexican Numbers' do
+      it 'should set mobile numbers' do
+        phone_number = "5215531048111"
+        PhoneClassifier.new(phone_number).kind.should == :mobile
+      end
+    end
     context "Netherlands Numbers" do
 
       it "should set NL mobile numbers" do
