@@ -71,6 +71,7 @@ Supported Countries
 * +503, El Salvador
 * +509, Haiti
 * +852, Hong Kong
+* +972, Israel
 
 
 Where is it used

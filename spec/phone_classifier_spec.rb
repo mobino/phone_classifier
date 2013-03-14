@@ -6,7 +6,6 @@ require 'spec_helper'
 describe PhoneClassifier do
 
 
-
   context "it classifies a phone number" do
 
     let(:phone_number) { "41791234567" }
@@ -385,8 +384,25 @@ describe PhoneClassifier do
       PhoneClassifier.new(phone_number).kind.should == :mobile
     end
 
-    it "should set service numbers " do
+    it "should set service numbers" do
       phone_number = "98 961 123 1234"
+      PhoneClassifier.new(phone_number).kind.should == :forbidden
+    end
+  end
+
+  context 'Israelian numbers' do
+    it 'sets landline number' do
+      phone_number = "972 2 123 1234"
+      PhoneClassifier.new(phone_number).kind.should == :landline
+    end
+
+    it 'sets mobile numbers' do
+      phone_number = "972 59 123 1234"
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
+
+    it 'sets service numbers' do
+      phone_number = "972 1 123 1234"
       PhoneClassifier.new(phone_number).kind.should == :forbidden
     end
   end

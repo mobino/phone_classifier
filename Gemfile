@@ -1,5 +1,5 @@
-source :gemcutter
-source "http://rubygems.org"
+
+source "https://rubygems.org"
 
 gem 'rake'
 gem 'phony', :git => 'git://github.com/mobino/phony.git'

@@ -55,6 +55,8 @@
           '503' => %w{ 6... 7... }, # El Salvador
           '509' => %w{ 32 33 34 35 36 37 38 39 4. }, # Haiti
           '852' => %w{ 5... 6... 9... }, # Hong Kong
+          '970' => %w{ 5. }, # Israel (blocked cc)
+          '972' => %w{ 5. }, # Israel
       }
     end
   end

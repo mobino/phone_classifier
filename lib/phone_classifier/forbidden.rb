@@ -55,6 +55,8 @@ module Forbidden
         '503' => %w{ }, # El Salvador
         '509' => %w{ 8. 9. }, # Haiti
         '852' => %w{ 7... 8...}, # Hong Kong
+        '970' => %w{ 1 }, # Israel (blocked cc)
+        '972' => %w{ 1 }, # Israel
     }
   end
 end
