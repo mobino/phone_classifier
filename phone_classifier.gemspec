@@ -14,5 +14,4 @@ Gem::Specification.new do |s|
   s.has_rdoc = false
   s.extra_rdoc_files = ["README.md"]
   s.add_runtime_dependency 'phony', '~> 1.8'
-
 end

@@ -390,6 +390,20 @@ describe PhoneClassifier do
     end
   end
 
+  context "Iraqi Numbers" do
+
+    it "should set landline numbers" do
+      phone_number = "964 40 123 456"
+      PhoneClassifier.new(phone_number).kind.should == :landline
+    end
+
+    it "should set mobile numbers" do
+      phone_number = "964 753 123 4567"
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
+
+  end
+
   context 'Israelian numbers' do
     it 'sets landline number' do
       phone_number = "972 2 123 1234"
