@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/mobino/phony.git
-  revision: 740a846cd21181888c9907a3a3a907f4f121e07c
+  revision: 4265a6ae870a044cf223b733db99a8be420e405a
   branch: iraq_support
   specs:
     phony (1.8.4)

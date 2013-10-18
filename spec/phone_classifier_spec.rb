@@ -398,7 +398,7 @@ describe PhoneClassifier do
     end
 
     it "should set mobile numbers" do
-      phone_number = "964 75 3123 4567"
+      phone_number = "964 753 123 4567"
       PhoneClassifier.new(phone_number).kind.should == :mobile
     end
 
