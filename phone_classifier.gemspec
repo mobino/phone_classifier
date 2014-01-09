@@ -13,5 +13,5 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*spec.rb"]
   s.has_rdoc = false
   s.extra_rdoc_files = ["README.md"]
-  s.add_runtime_dependency 'phony', '~> 1.8'
+  s.add_runtime_dependency 'phony', '>= 1.8'
 end
