@@ -11,7 +11,7 @@ module Mobile
         '36' => %w{ 20 30 31 70 }, # Hungary
         '39' => %w{3..}, # Italy
         '40' => %w{ 7. }, # Romania
-        '41' => %w{ 7[6-9] }, # Switerzland
+        '41' => %w{ 7[6-9] }, # Switzerland
         '43' => %w{ 67 68 644 65. 66. 67. 68. 69. }, # Austria
         '44' => %w{ 7[4-9].. }, # UK
         '45' => %w{ 2[0-9] 30 31 40 41 42 5[0-3] 60 61 71 81 9[1-3] }, # Denmark
@@ -34,6 +34,7 @@ module Mobile
         '234' => %w{ 702[1-9] 70[3-9] 8[01][2-9] }, # Nigeria
         '248' => %w{ 2 }, # Seychelles
         '249' => %w{ 9.  }, # Sudan
+        '254' => %w{ 7.. }, # Kenya
         '255' => %w{ 61 65 68 7. }, # Tanzania
         '350' => %w{ 5. 6. }, # Gibraltar
         '351' => %w{ 9. }, # Portugal
