@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/mobino/phony.git
-  revision: b55732b369354b24d075ef28e3813926f3fdf5be
+  revision: 171d3a2e0bb429a547ec3de6ef441eb94024c9ca
   specs:
     phony (1.8.4)
 
