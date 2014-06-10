@@ -46,6 +46,7 @@ module Forbidden
         '359' => %w{ 800 900 }, # Bulgaria
         '370' => %w{ 800 9.. }, # Lithuania
         '372' => %w{ 1.. 800 }, # Estonia
+        '375' => %w{  }, # Belarus
         '377' => %w{  }, # Monaco
         '386' => %w{ 80 89 90 }, # Slovenia
         '420' => %w{ 8.. 9.. }, # Czech republic
