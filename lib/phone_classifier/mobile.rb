@@ -47,6 +47,7 @@ module Mobile
         '359' => %w{ 430 87. 88. 89. 98. }, # Bulgaria
         '370' => %w{ 6.. }, # Lithuania
         '372' => %w{ 5.. 81. 82.}, # Estonia
+        '375' => %w{ 25 29 33 44}, # Belarus
         '377' => %w{ 4. 6 }, # Monaco
         '386' => %w{ 30 40 31 41 51 71 70 64}, # Slovenia
         '420' => %w{ 60[1-8] 72. 73. 77. 79. 91 }, # Czech Republic
