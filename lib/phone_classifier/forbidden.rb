@@ -32,6 +32,7 @@ module Forbidden
         '213' => %w{ 8.. 9.. }, # Algeria
         '233' => %w{ 1 4 6 7 8 9 }, # Ghana
         '234' => %w{ 8.. 9.. }, # Nigeria
+        '243' => %w{  }, # D.R. Congo
         '248' => %w{ 5 6 7 8 9 }, # Seychelles
         '249' => %w{ }, # Sudan
         '255' => %w{ 8.. 9.. }, # Tanzania
