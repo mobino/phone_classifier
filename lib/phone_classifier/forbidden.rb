@@ -36,6 +36,7 @@ module Forbidden
         '248' => %w{ 5 6 7 8 9 }, # Seychelles
         '249' => %w{ }, # Sudan
         '255' => %w{ 8.. 9.. }, # Tanzania
+        '260' => %w{ }, # Zambia
         '350' => %w{ 8... }, # Gibraltar
         '351' => %w{ 800 80. }, # Portugal
         '352' => %w{ 118 12 13 800 801 900 901 905 }, # Luxembourg

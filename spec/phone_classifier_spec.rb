@@ -523,4 +523,27 @@ describe PhoneClassifier do
 
   end
 
+  context 'Zambian numbers' do
+    it 'recognizes CellZ as mobile' do
+      phone_number = '260955123456'
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
+
+    it 'recognizes MTN as mobile' do
+      phone_number = '260966123456'
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
+
+    it 'recognizes Celtel as mobile' do
+      phone_number = '260977123456'
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+
+      phone_number = '260978123456'
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+
+      phone_number = '260979123456'
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
+  end
+
 end

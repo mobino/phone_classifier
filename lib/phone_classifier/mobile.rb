@@ -38,6 +38,7 @@ module Mobile
         '249' => %w{ 9.  }, # Sudan
         '254' => %w{ 7.. }, # Kenya
         '255' => %w{ 61 65 68 7. }, # Tanzania
+        '260' => %w{ 95 96 97 },  # Zambia
         '350' => %w{ 5. 6. }, # Gibraltar
         '351' => %w{ 9. }, # Portugal
         '352' => %w{ 621 628 661 668 691 698 }, # Luxembourg
