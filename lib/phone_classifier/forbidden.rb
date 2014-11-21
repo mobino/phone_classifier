@@ -1,5 +1,32 @@
 module Forbidden
 
+  def forbidden?
+    cc, *national_parts = Phony.split Phony.normalize(@number)
+    ndcs = Forbidden.data[cc]
+
+    # if we don't know the country, we can make no assumptions
+    return false unless ndcs
+    ndc_forbidden_check(national_parts, ndcs)
+  end
+
+
+  private
+
+  def ndc_forbidden_check(national_parts, ndcs)
+    prefix = national_parts.shift
+
+    # countries without NDCs (Denmark) have this parts structure ["45", false, "40", "53", "25", "77"]
+    until national_parts.size == 0 || prefix.is_a?(String)
+      prefix = national_parts.shift
+    end
+
+    # without a valid prefix, there is no check that we can make here
+    return false unless prefix.is_a?(String)
+
+    ndcs.each { |n| return true if prefix.match(/^#{n}$/) }
+    false
+  end
+
   def self.data
     @@forbidden ||= {
         '1' => %w{ 1.. }, # USA
@@ -21,6 +48,7 @@ module Forbidden
         '49' => %w{ 1. 164 168 169 180 181 19[0-4] 800 900 }, # Germany
         '52' => %w{ }, # Mexico
         '54' => %w{ 6.. 8.. }, # Argentina
+        '55' => %w{ }, # Brazil
         '60' => %w{ 100 101 102 103 104 108 112 991 994 995 999 }, # Malaysia
         '61' => %w{ 1 }, # Australia
         '65' => %w{ 3... 800 1800 1900 }, # Singapore

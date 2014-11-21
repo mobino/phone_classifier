@@ -524,25 +524,103 @@ describe PhoneClassifier do
   end
 
   context 'Zambian numbers' do
-    it 'recognizes CellZ as mobile' do
+    # see http://www.itu.int/oth/T02020000E8/en
+
+    it 'returns "mobile" for CellZ' do
       phone_number = '260955123456'
-      PhoneClassifier.new(phone_number).kind.should == :mobile
+      PhoneClassifier.new(phone_number).kind.should be(:mobile), phone_number
     end
 
-    it 'recognizes MTN as mobile' do
+    it 'returns "mobile" for MTN' do
       phone_number = '260966123456'
-      PhoneClassifier.new(phone_number).kind.should == :mobile
+      PhoneClassifier.new(phone_number).kind.should be(:mobile), phone_number
     end
 
-    it 'recognizes Celtel as mobile' do
+    it 'returns "mobile" for Celtel' do
       phone_number = '260977123456'
-      PhoneClassifier.new(phone_number).kind.should == :mobile
+      PhoneClassifier.new(phone_number).kind.should be(:mobile), phone_number
 
       phone_number = '260978123456'
-      PhoneClassifier.new(phone_number).kind.should == :mobile
+      PhoneClassifier.new(phone_number).kind.should be(:mobile), phone_number
 
       phone_number = '260979123456'
-      PhoneClassifier.new(phone_number).kind.should == :mobile
+      PhoneClassifier.new(phone_number).kind.should be(:mobile), phone_number
+    end
+
+    it 'returns "landline" for non-mobile 95xxx numbers' do
+      ([*0..9] - [5]).each do |digit|
+        # 5 is the mobile indicator for the ndc 95
+        phone_number = "26095#{digit}123456"
+        PhoneClassifier.new(phone_number).kind.should be(:landline), phone_number
+      end
+    end
+
+    it 'returns "landline" for non-mobile 96xxx numbers' do
+      ([*0..9] - [6]).each do |digit|
+        # 6 is the mobile indicator for the ndc 96
+        phone_number = "26096#{digit}123456"
+        PhoneClassifier.new(phone_number).kind.should be(:landline), phone_number
+      end
+    end
+
+    it 'returns "landline" for non-mobile 97xxx numbers' do
+      0.upto(6).each do |digit|
+        # 7-9 is the mobile indicator for the ndc 97
+        phone_number = "26097#{digit}123456"
+        PhoneClassifier.new(phone_number).kind.should be(:landline), phone_number
+      end
+    end
+
+    it 'returns "landline" for landline numbers' do
+      # 021Y XXXXXX where Y is in [1..8]
+      1.upto(8).each do |digit|
+        phone_number = "26021#{digit}123456"
+        PhoneClassifier.new(phone_number).kind.should be(:landline), phone_number
+      end
+    end
+  end
+
+  context 'Brazil numbers' do
+    # see http://www.itu.int/dms_pub/itu-t/oth/02/02/T020200001D0001PDFE.pdf
+
+    before(:each) do
+      @new_mobile_numbering_ndcs = %w{11 12 13 14 15 16 17 18 19 21 22 24 27 28 91 92 93 94 95 96 97 98 99}
+      @old_mobile_numbering_ndcs = %w{31 32 33 34 35 37 38 41 42 43 44 45 46 47 48 49 51 52 53 54 55 61 62 63 64 65 66 67 68 69 71 73 74 75 77 79 81 82 83 84 85 86 87 88 89}
+    end
+
+    it 'returns "mobile" for special states converted to new numbering plan from ANATEL (9\d{8})' do
+      @new_mobile_numbering_ndcs.each do |state_code|
+        phone_number = "55#{state_code}993051123"
+        PhoneClassifier.new(phone_number).kind.should be(:mobile), phone_number
+      end
+    end
+
+    it 'returns "mobile" for states still using old mobile numbering plan' do
+      # the old numbering plan used 9,8,7,6 as the first digit in the subscriber number to indicate a mobile number
+      @old_mobile_numbering_ndcs.each do |state_code|
+        6.upto(9).each do |initial_digit|
+          phone_number = "55#{state_code}#{initial_digit}3051123"
+          PhoneClassifier.new(phone_number).kind.should be(:mobile), phone_number
+        end
+      end
+    end
+
+    it 'returns "landline" for special states already using the new mobile numbering plan' do
+      @new_mobile_numbering_ndcs.each do |state_code|
+        0.upto(8).each do |initial_digit|
+          phone_number = "55#{state_code}#{initial_digit}3051123"
+          PhoneClassifier.new(phone_number).kind.should be(:landline), phone_number
+        end
+      end
+    end
+
+    it 'returns "landline" for states still using old mobile numbering plan' do
+      @old_mobile_numbering_ndcs.each do |state_code|
+        0.upto(5).each do |initial_digit|
+          phone_number = "55#{state_code}#{initial_digit}3051123"
+          PhoneClassifier.new(phone_number).kind.should be(:landline), phone_number
+        end
+      end
     end
   end
 
