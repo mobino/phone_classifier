@@ -206,9 +206,24 @@ describe PhoneClassifier do
     end
 
     context 'Mexican Numbers' do
-      it 'should set mobile numbers' do
+      it 'defines the numbers as mobile numbers' do
+        # NOTE: to dial Mexican cell phones from abroad, you need to add 1 following the country code
+        # In our case, this is how the numbers are stored and this is why when we check for a mobile/landline
+        # we require that the 1 be present following the country code
+
         phone_number = "5215531048111"
-        PhoneClassifier.new(phone_number).kind.should == :mobile
+        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
+
+        phone_number = "5216641231212"
+        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
+      end
+
+      it 'defines the numbers as landline numbers' do
+        phone_number = "525531048111"
+        PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
+
+        phone_number = "526641231212"
+        PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
       end
     end
     context "Netherlands Numbers" do
@@ -528,30 +543,30 @@ describe PhoneClassifier do
 
     it 'returns "mobile" for CellZ' do
       phone_number = '260955123456'
-      PhoneClassifier.new(phone_number).kind.should be(:mobile), phone_number
+      PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
     end
 
     it 'returns "mobile" for MTN' do
       phone_number = '260966123456'
-      PhoneClassifier.new(phone_number).kind.should be(:mobile), phone_number
+      PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
     end
 
     it 'returns "mobile" for Celtel' do
       phone_number = '260977123456'
-      PhoneClassifier.new(phone_number).kind.should be(:mobile), phone_number
+      PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
 
       phone_number = '260978123456'
-      PhoneClassifier.new(phone_number).kind.should be(:mobile), phone_number
+      PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
 
       phone_number = '260979123456'
-      PhoneClassifier.new(phone_number).kind.should be(:mobile), phone_number
+      PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
     end
 
     it 'returns "landline" for non-mobile 95xxx numbers' do
       ([*0..9] - [5]).each do |digit|
         # 5 is the mobile indicator for the ndc 95
         phone_number = "26095#{digit}123456"
-        PhoneClassifier.new(phone_number).kind.should be(:landline), phone_number
+        PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
       end
     end
 
@@ -559,7 +574,7 @@ describe PhoneClassifier do
       ([*0..9] - [6]).each do |digit|
         # 6 is the mobile indicator for the ndc 96
         phone_number = "26096#{digit}123456"
-        PhoneClassifier.new(phone_number).kind.should be(:landline), phone_number
+        PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
       end
     end
 
@@ -567,7 +582,7 @@ describe PhoneClassifier do
       0.upto(6).each do |digit|
         # 7-9 is the mobile indicator for the ndc 97
         phone_number = "26097#{digit}123456"
-        PhoneClassifier.new(phone_number).kind.should be(:landline), phone_number
+        PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
       end
     end
 
@@ -575,7 +590,7 @@ describe PhoneClassifier do
       # 021Y XXXXXX where Y is in [1..8]
       1.upto(8).each do |digit|
         phone_number = "26021#{digit}123456"
-        PhoneClassifier.new(phone_number).kind.should be(:landline), phone_number
+        PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
       end
     end
   end
@@ -591,7 +606,7 @@ describe PhoneClassifier do
     it 'returns "mobile" for special states converted to new numbering plan from ANATEL (9\d{8})' do
       @new_mobile_numbering_ndcs.each do |state_code|
         phone_number = "55#{state_code}993051123"
-        PhoneClassifier.new(phone_number).kind.should be(:mobile), phone_number
+        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
       end
     end
 
@@ -600,7 +615,7 @@ describe PhoneClassifier do
       @old_mobile_numbering_ndcs.each do |state_code|
         6.upto(9).each do |initial_digit|
           phone_number = "55#{state_code}#{initial_digit}3051123"
-          PhoneClassifier.new(phone_number).kind.should be(:mobile), phone_number
+          PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
         end
       end
     end
@@ -609,7 +624,7 @@ describe PhoneClassifier do
       @new_mobile_numbering_ndcs.each do |state_code|
         0.upto(8).each do |initial_digit|
           phone_number = "55#{state_code}#{initial_digit}3051123"
-          PhoneClassifier.new(phone_number).kind.should be(:landline), phone_number
+          PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
         end
       end
     end
@@ -618,8 +633,27 @@ describe PhoneClassifier do
       @old_mobile_numbering_ndcs.each do |state_code|
         0.upto(5).each do |initial_digit|
           phone_number = "55#{state_code}#{initial_digit}3051123"
-          PhoneClassifier.new(phone_number).kind.should be(:landline), phone_number
+          PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
         end
+      end
+    end
+
+    it 'Mobino distributor checks' do
+      %w(5511999089149 5511976076005).each do |phone_number|
+        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
+      end
+    end
+
+  end
+
+  context 'Mobino verified numbers currently on record' do
+    File.foreach(File.expand_path("data/mobino_verified_mobile_numbers.txt", SPEC_ROOT)) do |line|
+      phone_number = line.strip
+      next if phone_number.start_with?('--') or phone_number.empty?
+
+      it "checks the Mobino verified number #{phone_number}" do
+        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
+        Phony.plausible?(phone_number).should eq(true), phone_number
       end
     end
   end
