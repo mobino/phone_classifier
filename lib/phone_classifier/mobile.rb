@@ -103,6 +103,7 @@ module Mobile
         '964' => ->(x) { mobile_via_ndc?(x, %w{ 7[1-9] }) }, # Iraq
         '970' => ->(x) { mobile_via_ndc?(x, %w{ 5. }) }, # Israel (blocked cc)
         '972' => ->(x) { mobile_via_ndc?(x, %w{ 5. }) }, # Israel
+        '998' => ->(x) { mobile_via_national?(x, /^9[01234789]\d{7}$/) }, # Uzbekistan
     }
   end
 end
