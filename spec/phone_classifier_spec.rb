@@ -641,6 +641,7 @@ describe PhoneClassifier do
     it 'Mobino distributor checks' do
       %w(5511999089149 5511976076005).each do |phone_number|
         PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
+        Phony.plausible?(phone_number).should eq(true), phone_number
       end
     end
 
