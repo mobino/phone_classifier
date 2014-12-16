@@ -88,6 +88,58 @@ describe PhoneClassifier do
 
     end
 
+
+    context 'Brazil numbers' do
+      # see http://www.itu.int/dms_pub/itu-t/oth/02/02/T020200001D0001PDFE.pdf
+
+      before(:each) do
+        @new_mobile_numbering_ndcs = %w{11 12 13 14 15 16 17 18 19 21 22 24 27 28 91 92 93 94 95 96 97 98 99}
+        @old_mobile_numbering_ndcs = %w{31 32 33 34 35 37 38 41 42 43 44 45 46 47 48 49 51 52 53 54 55 61 62 63 64 65 66 67 68 69 71 73 74 75 77 79 81 82 83 84 85 86 87 88 89}
+      end
+
+      it 'returns "mobile" for special states converted to new numbering plan from ANATEL (9\d{8})' do
+        @new_mobile_numbering_ndcs.each do |state_code|
+          phone_number = "55#{state_code}993051123"
+          PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
+        end
+      end
+
+      it 'returns "mobile" for states still using old mobile numbering plan' do
+        # the old numbering plan used 9,8,7,6 as the first digit in the subscriber number to indicate a mobile number
+        @old_mobile_numbering_ndcs.each do |state_code|
+          6.upto(9).each do |initial_digit|
+            phone_number = "55#{state_code}#{initial_digit}3051123"
+            PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
+          end
+        end
+      end
+
+      it 'returns "landline" for special states already using the new mobile numbering plan' do
+        @new_mobile_numbering_ndcs.each do |state_code|
+          0.upto(8).each do |initial_digit|
+            phone_number = "55#{state_code}#{initial_digit}3051123"
+            PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
+          end
+        end
+      end
+
+      it 'returns "landline" for states still using old mobile numbering plan' do
+        @old_mobile_numbering_ndcs.each do |state_code|
+          0.upto(5).each do |initial_digit|
+            phone_number = "55#{state_code}#{initial_digit}3051123"
+            PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
+          end
+        end
+      end
+
+      it 'Mobino distributor checks' do
+        %w(5511999089149 5511976076005).each do |phone_number|
+          PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
+        end
+      end
+
+    end
+
     context "Swiss Numbers" do
 
       it "should set CH mobile numbers" do
@@ -536,6 +588,41 @@ describe PhoneClassifier do
       PhoneClassifier.new(phone_number).kind.should == :forbidden
     end
 
+  end
+
+  context 'Uzbekistan' do
+    # http://www.itu.int/dms_pub/itu-t/oth/02/02/T02020000E10001MSWE.doc
+    %w(90 91 92 93 94 97 98 99).each do |ndc|
+      phone_number = "998#{ndc}1234567"
+      it "classifies the number #{phone_number} as a valid, mobile number" do
+        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
+        Phony.plausible?(phone_number).should eq(true), phone_number
+      end
+    end
+
+    %w(90 91 92 93 94 97 98 99).each do |ndc|
+      phone_number = "998#{ndc}123456"
+      it "classifies the number #{phone_number} as a invalid (too short), landline number" do
+        PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
+        Phony.plausible?(phone_number).should eq(false), phone_number
+      end
+    end
+
+    %w(90 91 92 93 94 97 98 99).each do |ndc|
+      phone_number = "998#{ndc}12345678"
+      it "classifies the number #{phone_number} as a invalid (too long), landline number" do
+        PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
+        Phony.plausible?(phone_number).should eq(false), phone_number
+      end
+    end
+
+    %w(61 62 65 66 67 69 71 72 73 74 75 76 79).each do |ndc|
+      phone_number = "998#{ndc}1234567"
+      it "classifies the number #{phone_number} as a valid, landline number" do
+        PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
+        Phony.plausible?(phone_number).should eq(true), phone_number
+      end
+    end
   end
 
   context 'Zambian numbers' do
