@@ -160,7 +160,14 @@ describe PhoneClassifier do
       it "should set SE mobile numbers" do
         phone_number = "46729443333"
         PhoneClassifier.new(phone_number).kind.should == :mobile
+      end
 
+      it 'properly formats the number' do
+        phone_number = '46729443333'
+        Phony.format(phone_number, format: :+).should eq('+46 72 944 33 33'), phone_number
+
+        phone_number = '46734177166'
+        Phony.format(phone_number, format: :+).should eq('+46 73 417 71 66'), phone_number
       end
 
     end
@@ -568,23 +575,27 @@ describe PhoneClassifier do
 
   context "UK Numbers" do
 
-    it "should set UK mobile numbers" do
-      phone_number = "447412121314"
-      PhoneClassifier.new(phone_number).kind.should == :mobile
+    %w(447412121314 447785330971).each do |phone_number|
+      it "classifies the number #{phone_number} as a valid UK mobile" do
+        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
+        Phony.plausible?(phone_number).should eq(true), phone_number
+      end
     end
 
-    it "should set UK mobile numbers" do
-      phone_number = "44778533097"
-      PhoneClassifier.new(phone_number).kind.should == :mobile
+    %w(44741 447412 4474123 44741234 447412345 44741234567 4474123456789 44741234567890).each do |phone_number|
+      it "classifies the number #{phone_number} as an invalid UK mobile" do
+        Phony.plausible?(phone_number).should eq(false), phone_number
+      end
     end
 
-    it "should set UK land numbers" do
-      phone_number = "442012121314"
-      PhoneClassifier.new(phone_number).kind.should == :landline
+    it 'classifies the number 442012121314 as a valid UK landline' do
+      phone_number = '442012121314'
+      PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
+      Phony.plausible?(phone_number).should eq(true), phone_number
     end
 
-    it "should set UK forbidden numbers" do
-      phone_number = "4480012121314"
+    it 'classifies the number 4480012121314 as a forbidden UK number' do
+      phone_number = '4480012121314'
       PhoneClassifier.new(phone_number).kind.should == :forbidden
     end
 
