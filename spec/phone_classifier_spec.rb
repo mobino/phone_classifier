@@ -745,16 +745,4 @@ describe PhoneClassifier do
 
   end
 
-  context 'Mobino verified numbers currently on record' do
-    File.foreach(File.expand_path("data/mobino_verified_mobile_numbers.txt", SPEC_ROOT)) do |line|
-      phone_number = line.strip
-      next if phone_number.start_with?('--') or phone_number.empty?
-
-      it "checks the Mobino verified number #{phone_number}" do
-        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
-        Phony.plausible?(phone_number).should eq(true), phone_number
-      end
-    end
-  end
-
 end
