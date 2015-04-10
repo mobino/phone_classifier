@@ -348,37 +348,44 @@ describe PhoneClassifier do
 
 
     context "Nigerian Numbers" do
+      # http://www.ncc.gov.ng/index.php?option=com_content&view=article&id=113&Itemid=102
+      # http://www.ncc.gov.ng/index.php?option=com_docman&task=doc_download&gid=92&Itemid=
 
-      it "should set Nigeria mobile numbers" do
-        phone_number = "2347021 555 5555"
-        PhoneClassifier.new(phone_number).kind.should == :mobile
+      %w(70 80 81 90).each do |prefix|
+        (0..9).each do |suffix|
+          ndc = "#{prefix}#{suffix}"
+          phone_number = "234#{ndc}1234567"
+
+          it "classifies the number #{phone_number} as a valid, mobile number" do
+            PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
+            Phony.plausible?(phone_number).should eq(true), phone_number
+          end
+        end
       end
 
-      it "should set Nigeria mobile numbers" do
-        phone_number = "234704 555 5555"
-        PhoneClassifier.new(phone_number).kind.should == :mobile
+      %w(70 80 81 90).each do |prefix|
+        (0..9).each do |suffix|
+          ndc = "#{prefix}#{suffix}"
+          phone_number = "234#{ndc}123456"
+
+          it "classifies the number #{phone_number} as  invalid (too short)" do
+            PhoneClassifier.new(phone_number).kind.should_not eq(:mobile), phone_number
+            Phony.plausible?(phone_number).should eq(false), phone_number
+          end
+        end
       end
 
-      it "should set Nigeria mobile numbers (80x)" do
-        phone_number = "234804 555 5555"
-        PhoneClassifier.new(phone_number).kind.should == :mobile
-      end
+      %w(70 80 81 90).each do |prefix|
+        (0..9).each do |suffix|
+          ndc = "#{prefix}#{suffix}"
+          phone_number = "234#{ndc}12345678"
 
-      it "should set Nigeria mobile numbers (81x)" do
-        phone_number = "234815 555 5555"
-        PhoneClassifier.new(phone_number).kind.should == :mobile
+          it "classifies the number #{phone_number} as  invalid (too long)" do
+            PhoneClassifier.new(phone_number).kind.should_not eq(:mobile), phone_number
+            Phony.plausible?(phone_number).should eq(false), phone_number
+          end
+        end
       end
-
-      it "should set Nigeria land numbers" do
-        phone_number = "2341 555 5555"
-        PhoneClassifier.new(phone_number).kind.should == :landline
-      end
-
-      it "should set Nigeria forbidden numbers" do
-        phone_number = "234800 555 5555"
-        PhoneClassifier.new(phone_number).kind.should == :forbidden
-      end
-
     end
 
 
@@ -446,21 +453,45 @@ describe PhoneClassifier do
     end
   end
 
-  context "Iran Numbers" do
+  context "Iranian Numbers" do
+    # http://en.wikipedia.org/wiki/Telephone_numbers_in_Iran
+    # http://www.itu.int/dms_pub/itu-t/oth/02/02/T02020000660001PDFE.pd
 
     it "should set landline numbers" do
       phone_number = "98 21 1123 1234"
       PhoneClassifier.new(phone_number).kind.should == :landline
     end
 
-    it "should set mobile numbers" do
-      phone_number = "98 919 123 1234"
-      PhoneClassifier.new(phone_number).kind.should == :mobile
-    end
-
     it "should set service numbers" do
       phone_number = "98 961 123 1234"
       PhoneClassifier.new(phone_number).kind.should == :forbidden
+    end
+
+    [901, 902].push( (910..939).to_a ).flatten.each do |ndc|
+      phone_number = "98#{ndc}1234567"
+
+      it "classifies the number #{phone_number} as a valid, mobile number" do
+        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
+        Phony.plausible?(phone_number).should eq(true), phone_number
+      end
+    end
+
+    [901, 902].push( (910..939).to_a ).flatten.each do |ndc|
+      phone_number = "98#{ndc}123456"
+
+      it "classifies the number #{phone_number} as a invalid (too short)" do
+        PhoneClassifier.new(phone_number).kind.should_not eq(:mobile), phone_number
+        Phony.plausible?(phone_number).should eq(false), phone_number
+      end
+    end
+
+    [901, 902].push( (910..939).to_a ).flatten.each do |ndc|
+      phone_number = "98#{ndc}12345678"
+
+      it "classifies the number #{phone_number} as a invalid (too long)" do
+        PhoneClassifier.new(phone_number).kind.should_not eq(:mobile), phone_number
+        Phony.plausible?(phone_number).should eq(false), phone_number
+      end
     end
   end
 
@@ -505,19 +536,34 @@ describe PhoneClassifier do
 
   end
 
-  context "Moroccon Numbers" do
+  context "Moroccan Numbers" do
+    # http://en.wikipedia.org/wiki/Telephone_numbers_in_Morocco
 
-    it "should set Moroocan mobile numbers" do
-      phone_number = "212 6 52 22 11 44"
-      PhoneClassifier.new(phone_number).kind.should == :mobile
+    it "classifies the number 212612345678 as a valid, mobile number" do
+      phone_number = "212612345678"
+
+      PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
+      Phony.plausible?(phone_number).should eq(true), phone_number
     end
 
-    it "should set Morocoan landline numbers " do
+    it "classifies the number 21261234567 as a invalid (too short)" do
+      phone_number = "21261234567"
+
+      PhoneClassifier.new(phone_number).kind.should_not eq(:mobile), phone_number
+      Phony.plausible?(phone_number).should eq(false), phone_number
+    end
+
+    it "classifies the number 2126123456789 as a invalid (too long)" do
+      phone_number = "2126123456789"
+
+      PhoneClassifier.new(phone_number).kind.should_not eq(:mobile), phone_number
+      Phony.plausible?(phone_number).should eq(false), phone_number
+    end
+
+    it "should set Moroccan landline numbers " do
       phone_number = "212 45 1234 123"
       PhoneClassifier.new(phone_number).kind.should == :landline
     end
-
-
   end
 
   context "Seychelle Numbers" do
