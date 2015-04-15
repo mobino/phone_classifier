@@ -368,8 +368,8 @@ describe PhoneClassifier do
           ndc = "#{prefix}#{suffix}"
           phone_number = "234#{ndc}123456"
 
-          it "classifies the number #{phone_number} as  invalid (too short)" do
-            PhoneClassifier.new(phone_number).kind.should_not eq(:mobile), phone_number
+          it "classifies the number #{phone_number} as possibly valid mobile number" do
+            PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
             Phony.plausible?(phone_number).should eq(false), phone_number
           end
         end
@@ -380,8 +380,8 @@ describe PhoneClassifier do
           ndc = "#{prefix}#{suffix}"
           phone_number = "234#{ndc}12345678"
 
-          it "classifies the number #{phone_number} as  invalid (too long)" do
-            PhoneClassifier.new(phone_number).kind.should_not eq(:mobile), phone_number
+          it "classifies the number #{phone_number} as a possibly valid mobile number" do
+            PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
             Phony.plausible?(phone_number).should eq(false), phone_number
           end
         end
@@ -479,8 +479,8 @@ describe PhoneClassifier do
     [901, 902].push( (910..939).to_a ).flatten.each do |ndc|
       phone_number = "98#{ndc}123456"
 
-      it "classifies the number #{phone_number} as a invalid (too short)" do
-        PhoneClassifier.new(phone_number).kind.should_not eq(:mobile), phone_number
+      it "classifies the number #{phone_number} as a possibly valid mobile number" do
+        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
         Phony.plausible?(phone_number).should eq(false), phone_number
       end
     end
@@ -488,8 +488,8 @@ describe PhoneClassifier do
     [901, 902].push( (910..939).to_a ).flatten.each do |ndc|
       phone_number = "98#{ndc}12345678"
 
-      it "classifies the number #{phone_number} as a invalid (too long)" do
-        PhoneClassifier.new(phone_number).kind.should_not eq(:mobile), phone_number
+      it "classifies the number #{phone_number} as a possibly valid mobile number" do
+        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
         Phony.plausible?(phone_number).should eq(false), phone_number
       end
     end
@@ -552,8 +552,8 @@ describe PhoneClassifier do
     %w(01 02 03 04 05 06 07 08 09 44 45 46 47 48 49 50 54 60 66 67 69 77 78).each do |ndc|
       phone_number = "225#{ndc}12345"
 
-      it "classifies the number #{phone_number} as a invalid (too short), mobile number" do
-        PhoneClassifier.new(phone_number).kind.should_not eq(:mobile), phone_number
+      it "classifies the number #{phone_number} as a possibly valid mobile number" do
+        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
         Phony.plausible?(phone_number).should eq(false), phone_number
       end
     end
@@ -561,8 +561,8 @@ describe PhoneClassifier do
     %w(01 02 03 04 05 06 07 08 09 44 45 46 47 48 49 50 54 60 66 67 69 77 78).each do |ndc|
       phone_number = "225#{ndc}1234567"
 
-      it "classifies the number #{phone_number} as a invalid (too long), mobile number" do
-        PhoneClassifier.new(phone_number).kind.should_not eq(:mobile), phone_number
+      it "classifies the number #{phone_number} as a possibly valid mobile number" do
+        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
         Phony.plausible?(phone_number).should eq(false), phone_number
       end
     end
@@ -588,17 +588,17 @@ describe PhoneClassifier do
       Phony.plausible?(phone_number).should eq(true), phone_number
     end
 
-    it "classifies the number 21261234567 as a invalid (too short)" do
+    it "classifies the number 21261234567 as a possibly valid mobile number" do
       phone_number = "21261234567"
 
-      PhoneClassifier.new(phone_number).kind.should_not eq(:mobile), phone_number
+      PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
       Phony.plausible?(phone_number).should eq(false), phone_number
     end
 
-    it "classifies the number 2126123456789 as a invalid (too long)" do
+    it "classifies the number 2126123456789 as a possibly valid mobile number" do
       phone_number = "2126123456789"
 
-      PhoneClassifier.new(phone_number).kind.should_not eq(:mobile), phone_number
+      PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
       Phony.plausible?(phone_number).should eq(false), phone_number
     end
 
@@ -701,16 +701,16 @@ describe PhoneClassifier do
 
     %w(90 91 92 93 94 97 98 99).each do |ndc|
       phone_number = "998#{ndc}123456"
-      it "classifies the number #{phone_number} as a invalid (too short), landline number" do
-        PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
+      it "classifies the number #{phone_number} as a possible mobile number" do
+        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
         Phony.plausible?(phone_number).should eq(false), phone_number
       end
     end
 
     %w(90 91 92 93 94 97 98 99).each do |ndc|
       phone_number = "998#{ndc}12345678"
-      it "classifies the number #{phone_number} as a invalid (too long), landline number" do
-        PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
+      it "classifies the number #{phone_number} as a possible mobile number" do
+        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
         Phony.plausible?(phone_number).should eq(false), phone_number
       end
     end

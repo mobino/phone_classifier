@@ -59,28 +59,28 @@ module Mobile
         '47' => ->(x) { mobile_via_ndc?(x, %w{ 9.. 4.. }) }, # Norway
         '48' => ->(x) { mobile_via_ndc?(x, %w{50. 51. 53. 60. 66. 69. 72. 78. 79. 88.}) }, # Poland
         '49' => ->(x) { mobile_via_ndc?(x, %w{ 151 152.? 157.? 159 160 162 163 1672 17[0-9] }) }, # Germany
-        '52' => ->(x) { mobile_via_national?(x, /^1\d{10}$/) }, # Mexico
+        '52' => ->(x) { mobile_via_national?(x, /^1\d/) }, # Mexico
         '54' => ->(x) { mobile_via_ndc?(x, %w{ \d{2} \d{3} \d{4} }) }, # Argentina (Everything can be mobile)
-        '55' => ->(x) { mobile_via_national?(x, /^(11|12|13|14|15|16|17|18|19|21|22|24|27|28|91|92|93|94|95|96|97|98|99)9\d{8}$|^(31|32|33|34|35|37|38|41|42|43|44|45|46|47|48|49|51|52|53|54|55|61|62|63|64|65|66|67|68|69|71|73|74|75|77|79|81|82|83|84|85|86|87|88|89)[6-9]\d{7}$/)}, # Brazil
+        '55' => ->(x) { mobile_via_national?(x, /^(11|12|13|14|15|16|17|18|19|21|22|24|27|28|91|92|93|94|95|96|97|98|99)9|^(31|32|33|34|35|37|38|41|42|43|44|45|46|47|48|49|51|52|53|54|55|61|62|63|64|65|66|67|68|69|71|73|74|75|77|79|81|82|83|84|85|86|87|88|89)[6-9]/)}, # Brazil
         '60' => ->(x) { mobile_via_ndc?(x, %w{ 10 11 12 13 14 153 154 156 158 16 17 18 19 }) }, # Malaysia
         '61' => ->(x) { mobile_via_ndc?(x, %w{ 4.. }) }, # Australia
         '65' => ->(x) { mobile_via_ndc?(x, %w{ 8... 9... }) }, # Singapore
         '90' => ->(x) { mobile_via_ndc?(x, %w{ 53. 54. 50. 55. }) }, # Turkey
         '91' => ->(x) { mobile_via_ndc?(x, %w{ 91 92 93 94 97 98 99 }) }, # India
         '94' => ->(x) { mobile_via_ndc?(x, %w{ 71 72 75 77 78 }) }, # Sri Lanka
-        '98' => ->(x) { mobile_via_national?(x, /^(91|92|93)\d{8}$|^(901|902)\d{7}$/) } , #Iran
-        '212' => ->(x) { mobile_via_national?(x, /^6\d{8}$/) }, # Morocco
+        '98' => ->(x) { mobile_via_national?(x, /^(91|92|93)|^(901|902)/) } , #Iran
+        '212' => ->(x) { mobile_via_national?(x, /^6/) }, # Morocco
         '213' => ->(x) { mobile_via_ndc?(x, %w{ 55 66 697 699 77 790 796 }) }, # Algeria
-        '225' => ->(x) { mobile_via_national?(x, /^(01|02|03|04|05|06|07|08|09|44|45|46|47|48|49|50|54|60|66|67|69|77|78)\d{6}$/) }, # Côte d'Ivoire
+        '225' => ->(x) { mobile_via_national?(x, /^(01|02|03|04|05|06|07|08|09|44|45|46|47|48|49|50|54|60|66|67|69|77|78)/) }, # Côte d'Ivoire
         '233' => ->(x) { mobile_via_ndc?(x, %w{ 20 23 24 26 27 28 50 54 57 }) }, # Ghana
-        '234' => ->(x) { mobile_via_national?(x, /^(70|80|81|90)[0-9]\d{7}$/) }, # Nigeria
+        '234' => ->(x) { mobile_via_national?(x, /^(70|80|81|90)[0-9]/) }, # Nigeria
         '242' => ->(x) { mobile_via_ndc?(x, %w{ 01 04 05 06 }) }, #Congo
         '243' => ->(x) { mobile_via_ndc?(x, %w{ 80. 81. 82. 84. 88. 89. 97. 98. 99. }) }, #D.R. Congo
         '248' => ->(x) { mobile_via_ndc?(x, %w{ 2 }) }, # Seychelles
         '249' => ->(x) { mobile_via_ndc?(x, %w{ 9.  }) }, # Sudan
         '254' => ->(x) { mobile_via_ndc?(x, %w{ 7.. }) }, # Kenya
         '255' => ->(x) { mobile_via_ndc?(x, %w{ 61 65 68 7. }) }, # Tanzania
-        '260' => ->(x) { mobile_via_national?(x, /^(955)|(966)|(97[7-9])\d{6}$/) },  # Zambia
+        '260' => ->(x) { mobile_via_national?(x, /^(955)|(966)|(97[7-9])/) },  # Zambia
         '350' => ->(x) { mobile_via_ndc?(x, %w{ 5. 6. }) }, # Gibraltar
         '351' => ->(x) { mobile_via_ndc?(x, %w{ 9. }) }, # Portugal
         '352' => ->(x) { mobile_via_ndc?(x, %w{ 621 628 661 668 691 698 }) }, # Luxembourg
@@ -104,7 +104,7 @@ module Mobile
         '964' => ->(x) { mobile_via_ndc?(x, %w{ 7[1-9] }) }, # Iraq
         '970' => ->(x) { mobile_via_ndc?(x, %w{ 5. }) }, # Israel (blocked cc)
         '972' => ->(x) { mobile_via_ndc?(x, %w{ 5. }) }, # Israel
-        '998' => ->(x) { mobile_via_national?(x, /^9[01234789]\d{7}$/) }, # Uzbekistan
+        '998' => ->(x) { mobile_via_national?(x, /^9[01234789]/) }, # Uzbekistan
     }
   end
 end
