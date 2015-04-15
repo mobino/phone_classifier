@@ -526,6 +526,48 @@ describe PhoneClassifier do
     end
   end
 
+
+  context 'Ivory Coast numbers' do
+    # http://www.itu.int/dms_pub/itu-t/oth/02/02/T02020000310001PDFE.pdf
+    # http://en.wikipedia.org/wiki/Telephone_numbers_in_Ivory_Coast
+
+    %w(20 21 22 23 24 30 31 32 33 34 35 36).each do |ndc|
+      phone_number = "225#{ndc}123456"
+
+      it "classifies the number #{phone_number} as a valid, landline number" do
+        PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
+        Phony.plausible?(phone_number).should eq(true), phone_number
+      end
+    end
+
+    %w(01 02 03 04 05 06 07 08 09 44 45 46 47 48 49 50 54 60 66 67 69 77 78).each do |ndc|
+      phone_number = "225#{ndc}123456"
+
+      it "classifies the number #{phone_number} as a valid, mobile number" do
+        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
+        Phony.plausible?(phone_number).should eq(true), phone_number
+      end
+    end
+
+    %w(01 02 03 04 05 06 07 08 09 44 45 46 47 48 49 50 54 60 66 67 69 77 78).each do |ndc|
+      phone_number = "225#{ndc}12345"
+
+      it "classifies the number #{phone_number} as a invalid (too short), mobile number" do
+        PhoneClassifier.new(phone_number).kind.should_not eq(:mobile), phone_number
+        Phony.plausible?(phone_number).should eq(false), phone_number
+      end
+    end
+
+    %w(01 02 03 04 05 06 07 08 09 44 45 46 47 48 49 50 54 60 66 67 69 77 78).each do |ndc|
+      phone_number = "225#{ndc}1234567"
+
+      it "classifies the number #{phone_number} as a invalid (too long), mobile number" do
+        PhoneClassifier.new(phone_number).kind.should_not eq(:mobile), phone_number
+        Phony.plausible?(phone_number).should eq(false), phone_number
+      end
+    end
+  end
+
   context "Malaysian Numbers" do
 
     it "should set Malaysian mobile numbers" do

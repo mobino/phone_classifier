@@ -71,6 +71,7 @@ module Mobile
         '98' => ->(x) { mobile_via_national?(x, /^(91|92|93)\d{8}$|^(901|902)\d{7}$/) } , #Iran
         '212' => ->(x) { mobile_via_national?(x, /^6\d{8}$/) }, # Morocco
         '213' => ->(x) { mobile_via_ndc?(x, %w{ 55 66 697 699 77 790 796 }) }, # Algeria
+        '225' => ->(x) { mobile_via_national?(x, /^(01|02|03|04|05|06|07|08|09|44|45|46|47|48|49|50|54|60|66|67|69|77|78)\d{6}$/) }, # Côte d'Ivoire
         '233' => ->(x) { mobile_via_ndc?(x, %w{ 20 23 24 26 27 28 50 54 57 }) }, # Ghana
         '234' => ->(x) { mobile_via_national?(x, /^(70|80|81|90)[0-9]\d{7}$/) }, # Nigeria
         '242' => ->(x) { mobile_via_ndc?(x, %w{ 01 04 05 06 }) }, #Congo
