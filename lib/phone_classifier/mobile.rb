@@ -43,6 +43,7 @@ module Mobile
   def self.data
     @@mobile ||= {
         '1'  => ->(x) { mobile_via_ndc?(x, %w{ [2-9].. }) }, # USA
+        '27' => ->(x) { mobile_via_ndc?(x, %w{ 6[0-5] 7[0-4] 7[6-9] 8[1-4] }) }, # South Africa
         '30' => ->(x) { mobile_via_ndc?(x, %w{ 6.. }) }, # Greece
         '31' => ->(x) { mobile_via_ndc?(x, %w{ 6 }) }, # Netherlands
         '32' => ->(x) { mobile_via_ndc?(x, %w{4..}) }, # Belgium
@@ -81,6 +82,7 @@ module Mobile
         '254' => ->(x) { mobile_via_ndc?(x, %w{ 7.. }) }, # Kenya
         '255' => ->(x) { mobile_via_ndc?(x, %w{ 61 65 68 7. }) }, # Tanzania
         '260' => ->(x) { mobile_via_national?(x, /^(955)|(966)|(97[7-9])/) },  # Zambia
+        '263' => ->(x) { mobile_via_ndc?(x, %w(71 73 77 78)) }, # Zimbabwe
         '350' => ->(x) { mobile_via_ndc?(x, %w{ 5. 6. }) }, # Gibraltar
         '351' => ->(x) { mobile_via_ndc?(x, %w{ 9. }) }, # Portugal
         '352' => ->(x) { mobile_via_ndc?(x, %w{ 621 628 661 668 691 698 }) }, # Luxembourg
