@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'phone_classifier'
-  s.version     = '0.2.2'
+  s.version     = '0.3.0'
   s.summary     = "Classification of phone numbers"
   s.description = "Classifies some countries phone numbers into :mobile, :forbidden and :landline"
 
@@ -12,5 +12,5 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*spec.rb"]
   s.has_rdoc = false
   s.extra_rdoc_files = ["README.md"]
-  s.add_runtime_dependency 'phony', '>= 2.12.11'
+  s.add_runtime_dependency 'phony', '>= 2.14.11'
 end

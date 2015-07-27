@@ -634,6 +634,19 @@ describe PhoneClassifier do
     end
   end
 
+
+  context 'South Africa' do
+    # http://www.itu.int/dms_pub/itu-t/oth/02/02/T02020000C10001PDFE.pdf
+    # Page 25, Table 4
+    %w(60 61 62 63 64 65 70 71 72 73 74 76 77 78 79 81 82 83 84).each do |ndc|
+      phone_number = "27#{ndc}1234567"
+      it "classifies the number #{phone_number} as a valid, mobile number" do
+        PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
+        Phony.plausible?(phone_number).should eq(true), phone_number
+      end
+    end
+  end
+
   context "Sri Lanka Numbers" do
 
     it "should set mobile numbers" do
@@ -779,6 +792,25 @@ describe PhoneClassifier do
         PhoneClassifier.new(phone_number).kind.should eq(:landline), phone_number
       end
     end
+  end
+
+  context 'Zimbabwean numbers' do
+    # http://www.itu.int/dms_pub/itu-t/oth/02/02/T02020000E90002PDFE.pdf
+    # Page 5, Section 6 (Public Mobile Telecommunication Network Services)
+
+      { 'NetOne Celluar'     => %w(71),
+        'Telecel Zimbabwe'   => %w(73),
+        'Econet Wireless'    => %w(77 78) }.each do |operator, ndcs|
+
+        ndcs.each do |ndc|
+          phone_number = "263#{ndc}2345678"
+          it "classifies the number #{phone_number} as a valid, mobile number for the operator '#{operator}'" do
+            PhoneClassifier.new(phone_number).kind.should eq(:mobile), phone_number
+            Phony.plausible?(phone_number).should eq(true), phone_number
+          end
+        end
+
+      end
   end
 
   context 'Brazil numbers' do
