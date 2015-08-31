@@ -608,6 +608,13 @@ describe PhoneClassifier do
     end
   end
 
+  context "Myanmar Numbers" do
+    it "should set mobile numbers" do
+      phone_number = "95 9 250 233 058"
+      PhoneClassifier.new(phone_number).kind.should == :mobile
+    end
+  end
+
   context "Seychelle Numbers" do
 
     it "should set mobile numbers" do
