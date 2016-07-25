@@ -52,7 +52,7 @@ module Mobile
         '36' => ->(x) { mobile_via_ndc?(x, %w{ 20 30 31 70 }) }, # Hungary
         '39' => ->(x) { mobile_via_ndc?(x, %w{3..}) }, # Italy
         '40' => ->(x) { mobile_via_ndc?(x, %w{ 7. }) }, # Romania
-        '41' => ->(x) { mobile_via_ndc?(x, %w{ 7[6-9] }) }, # Switzerland
+        '41' => ->(x) { mobile_via_ndc?(x, %w{ 7[5-9] }) }, # Switzerland
         '43' => ->(x) { mobile_via_ndc?(x, %w{ 67 68 644 65. 66. 67. 68. 69. }) }, # Austria
         '44' => ->(x) { mobile_via_ndc?(x, %w{ 7[4-9].. }) }, # UK
         '45' => ->(x) { mobile_via_ndc?(x, %w{ 2[0-9] 30 31 40 41 42 5[0-3] 60 61 71 81 9[1-3] }) }, # Denmark
