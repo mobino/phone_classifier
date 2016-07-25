@@ -1,6 +1,13 @@
 History
 =======
 
+0.3.2
+-----
+* jfgroff: added 075 mobile block for Switzerland
+
+Years of missing history documentation here...
+----------------------------------------------
+
 0.0.11
 ------
 * jcfischer & afussen: added Israel
