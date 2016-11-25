@@ -1,9 +1,9 @@
 History
 =======
 
-0.3.3
------
-* jfgroff: accept all [789]... blocks for India
+0.3.3/0.3.4
+-----------
+* jfgroff: accept all [789]. blocks for India
 
 0.3.2
 -----
