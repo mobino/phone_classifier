@@ -1,6 +1,10 @@
 History
 =======
 
+0.3.3
+-----
+* jfgroff: accept all [789]... blocks for India
+
 0.3.2
 -----
 * jfgroff: added 075 mobile block for Switzerland

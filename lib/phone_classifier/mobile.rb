@@ -67,7 +67,7 @@ module Mobile
         '61' => ->(x) { mobile_via_ndc?(x, %w{ 4.. }) }, # Australia
         '65' => ->(x) { mobile_via_ndc?(x, %w{ 8... 9... }) }, # Singapore
         '90' => ->(x) { mobile_via_ndc?(x, %w{ 53. 54. 50. 55. }) }, # Turkey
-        '91' => ->(x) { mobile_via_ndc?(x, %w{ 91 92 93 94 97 98 99 }) }, # India
+        '91' => ->(x) { mobile_via_ndc?(x, %w{ [789]... }) }, # India
         '94' => ->(x) { mobile_via_ndc?(x, %w{ 71 72 75 77 78 }) }, # Sri Lanka
         '95' => ->(x) { mobile_via_ndc?(x, %w{ 9 }) }, # Myanmar
         '98' => ->(x) { mobile_via_national?(x, /^(91|92|93)|^(901|902)/) } , #Iran
