@@ -97,7 +97,7 @@ module Mobile
         '372' => ->(x) { mobile_via_ndc?(x, %w{ 5...? 81. 82.}) }, # Estonia
         '375' => ->(x) { mobile_via_ndc?(x, %w{ 25 29 33 44}) }, # Belarus
         '377' => ->(x) { mobile_via_ndc?(x, %w{ 4. 6 }) }, # Monaco
-        '381' => ->(x) { mobile_via_ndc?(x, %w{ 6. }) }, # Serbia
+        '381' => ->(x) { mobile_via_ndc?(x, %w{ 6[0-689] 677 678 }) }, # Serbia
         '386' => ->(x) { mobile_via_ndc?(x, %w{ 30 40 31 41 51 71 70 64}) }, # Slovenia
         '420' => ->(x) { mobile_via_ndc?(x, %w{ 60[1-8] 72. 73. 77. 79. 91 }) }, # Czech Republic
         '421' => ->(x) { mobile_via_ndc?(x, %w{ 9.. }) }, # Slovakia
